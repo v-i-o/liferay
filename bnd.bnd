@@ -1,7 +1,7 @@
 Bundle-Name: actum-news-project
-Bundle-SymbolicName: com.liferay.docs.mvcportlet
+Bundle-SymbolicName: cz.actum.portlet.news
 Bundle-Version: 1.0
-Export-Package: com.liferay.docs.mvcportlet.constants
+Export-Package: cz.actum.portlet.news.constants
 -contract: JavaPortlet,JavaServlet
 -jsp: *.jsp,*.jspf
 -metatype: *

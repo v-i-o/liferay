@@ -103,6 +103,7 @@
             <artifactId>com.liferay.site.taglib</artifactId>
             <scope>provided</scope>
         </dependency>
+<!--remove during package-->
         <dependency>
             <groupId>com.liferay.portal</groupId>
             <artifactId>com.liferay.portal.kernel</artifactId>

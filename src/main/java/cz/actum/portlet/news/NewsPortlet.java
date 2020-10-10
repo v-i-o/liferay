@@ -1,10 +1,10 @@
-package com.liferay.docs.mvcportlet.portlet;
+package cz.actum.portlet.news;
 
-import com.liferay.docs.mvcportlet.constants.NewsPortletKeys;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
+import cz.actum.portlet.constants.NewsPortletKeys;
 import org.osgi.service.component.annotations.Component;
 
 import javax.portlet.Portlet;
