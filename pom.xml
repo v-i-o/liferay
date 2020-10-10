@@ -12,14 +12,11 @@
     <profiles>
         <profile>
             <id>standalone</id>
-
-            <!-- Uncomment the following element if the project is not in workspace -->
-
-            <!--<activation>
+            <activation>
                 <activeByDefault>true</activeByDefault>
-            </activation>-->
+            </activation>
             <properties>
-                <liferay.bom.version>7.2.1</liferay.bom.version>
+                <liferay.bom.version>7.3.1</liferay.bom.version>
             </properties>
             <dependencyManagement>
                 <dependencies>
@@ -56,82 +53,33 @@
     </profiles>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <portal.version>7.2.0</portal.version>
+        <portlet.api.version>3.0.0</portlet.api.version>
+        <service.component.annotations.version>1.3.0</service.component.annotations.version>
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.liferay</groupId>
-            <artifactId>com.liferay.asset.taglib</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.liferay</groupId>
-            <artifactId>com.liferay.comment.taglib</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.liferay</groupId>
-            <artifactId>com.liferay.frontend.taglib</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.liferay</groupId>
-            <artifactId>com.liferay.frontend.taglib.dynamic.section</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.liferay</groupId>
-            <artifactId>com.liferay.frontend.taglib.form.navigator</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.liferay</groupId>
-            <artifactId>com.liferay.frontend.taglib.util</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.liferay</groupId>
-            <artifactId>com.liferay.journal.taglib</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.liferay</groupId>
-            <artifactId>com.liferay.layout.taglib</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.liferay</groupId>
-            <artifactId>com.liferay.site.taglib</artifactId>
-            <scope>provided</scope>
-        </dependency>
-<!--remove during package-->
-        <dependency>
-            <groupId>com.liferay.portal</groupId>
-            <artifactId>com.liferay.portal.kernel</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.liferay.portal</groupId>
-            <artifactId>com.liferay.util.taglib</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
+            <!-- Portlet API -->
             <groupId>javax.portlet</groupId>
             <artifactId>portlet-api</artifactId>
+            <version>${portlet.api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
+            <!-- Liferay's portlet MVC framework -->
+            <groupId>com.liferay.portal</groupId>
+            <artifactId>com.liferay.portal.kernel</artifactId>
         </dependency>
         <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <scope>provided</scope>
+            <!-- Liferay's bridges to other web technologies (Freemarker in this case) -->
+            <groupId>com.liferay.portal</groupId>
+            <artifactId>com.liferay.util.bridges</artifactId>
         </dependency>
         <dependency>
+            <!-- Declarative services annotations -->
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.service.component.annotations</artifactId>
+            <version>${service.component.annotations.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -162,22 +110,6 @@
                 </dependencies>
             </plugin>
             <plugin>
-                <groupId>com.liferay</groupId>
-                <artifactId>com.liferay.css.builder</artifactId>
-                <version>3.0.2</version>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <baseDir>src/main/resources/META-INF/resources</baseDir>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
@@ -199,71 +131,6 @@
                     </excludes>
                 </configuration>
             </plugin>
-
-
-            <plugin>
-                <groupId>com.liferay</groupId>
-                <artifactId>com.liferay.portal.tools.bundle.support</artifactId>
-                <version>3.2.1</version>
-                <executions>
-                    <execution>
-                        <id>deploy</id>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                    </execution>
-                </executions>
-                <configuration>
-                    <liferayHome>~/projects/liferay/liferay-ce-portal-7.3.4-ga5</liferayHome>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>com.liferay</groupId>
-                <artifactId>com.liferay.portal.tools.service.builder</artifactId>
-                <version>1.0.174</version>
-                <configuration>
-                    <apiDirName>src/main/java/</apiDirName>
-                    <autoImportDefaultReferences>true</autoImportDefaultReferences>
-                    <autoNamespaceTables>true</autoNamespaceTables>
-                    <buildNumberIncrement>true</buildNumberIncrement>
-                    <hbmFileName>src/main/resources/META-INF/module-hbm.xml</hbmFileName>
-                    <implDirName>src/main/java</implDirName>
-                    <inputFileName>src/main/resources/WEB-INF/services.xml</inputFileName>
-                    <mergeModelHintsConfigs>src/main/resources/META-INF/portlet-model-hints.xml</mergeModelHintsConfigs>
-                    <modelHintsFileName>src/main/resources/META-INF/portlet-model-hints.xml</modelHintsFileName>
-                    <osgiModule>true</osgiModule>
-                    <propsUtil>com.liferay.blade.samples.servicebuilder.service.util.PropsUtil</propsUtil>
-                    <resourcesDirName>src/main/resources</resourcesDirName>
-                    <springFileName>src/main/resources/META-INF/spring/module-spring.xml</springFileName>
-                    <springNamespaces>beans,osgi</springNamespaces>
-                    <sqlDirName>src/main/resources/META-INF/sql</sqlDirName>
-                    <sqlFileName>tables.sql</sqlFileName>
-                    <testDirName>src/main/test</testDirName>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>com.liferay</groupId>
-                <artifactId>com.liferay.portal.tools.wsdd.builder</artifactId>
-                <version>1.0.8</version>
-                <configuration>
-                    <inputFileName>service.xml</inputFileName>
-                    <outputDirName>src/main/java</outputDirName>
-                    <serverConfigFileName>src/main/resources/server-config.wsdd</serverConfigFileName>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>com.liferay</groupId>
-                <artifactId>com.liferay.portal.tools.rest.builder</artifactId>
-                <version>1.0.22</version>
-                <configuration>
-                </configuration>
-            </plugin>
-
-
         </plugins>
     </build>
 </project>

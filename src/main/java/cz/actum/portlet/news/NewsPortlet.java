@@ -33,12 +33,20 @@ import java.io.IOException;
 )
 public class NewsPortlet extends MVCPortlet {
 
+    @Override
+    public void init() throws PortletException {
+        try {
+            super.init();
+        } catch (Exception e){
+            System.out.println();
+        }
+    }
 
     @Override
     public void render(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException {
         ThemeDisplay themeDisplay = (ThemeDisplay) renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
         User user = themeDisplay.getUser();
-        renderRequest.setAttribute("userName", user.getFirstName());
+        renderRequest.setAttribute("userName", user.getFirstName() + " version 1");
         super.render(renderRequest, renderResponse);
     }
 
