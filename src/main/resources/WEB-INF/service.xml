@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+<service-builder package-path="cz.actum.portlet">
+    <author>Andrey</author>
+    <namespace>news</namespace>
+
+    <entity name="News" local-service="true" remote-service="true">
+        <!-- PK fields -->
+        <column name="id" type="long" primary="true" />
+        <!-- Other fields -->
+        <column name="title" type="String" />
+        <column name="body" type="String" />
+        <column name="date" type="Date" />
+        <!-- Order -->
+        <order by="asc">
+            <order-column name="date" />
+        </order>
+    </entity>
+
+</service-builder>
