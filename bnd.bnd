@@ -2,6 +2,11 @@ Bundle-Name: actum-news-project
 Bundle-SymbolicName: cz.actum.portlet.news
 Bundle-Version: 1.0
 Export-Package: cz.actum.portlet.news.constants
+Import-Package: \
+    com.liferay.portal.kernel.service.persistence;version="3.1.0",\
+    com.liferay.portal.kernel.theme,com.liferay.portal.kernel.messaging,com.liferay.portal.kernel.model;version="3.1.0",\
+    com.liferay.portal.kernel.portlet.bridges.mvc;version="2.0.3",\
+    javax.portlet;version="3.0"
 -contract: JavaPortlet,JavaServlet
 -jsp: *.jsp,*.jspf
 -metatype: *

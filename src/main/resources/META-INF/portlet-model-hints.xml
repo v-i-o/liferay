@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="cz.actum.portlet.model.News">
+		<field name="id" type="long" />
+		<field name="title" type="String" />
+		<field name="body" type="String" />
+		<field name="date" type="Date" />
+	</model>
+</model-hints>
