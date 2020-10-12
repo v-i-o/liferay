@@ -1,5 +1,9 @@
 package cz.actum.portlet.news;
 
+import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlDivision;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.ParamUtil;
 import cz.actum.portlet.constants.NewsPortletKeys;
@@ -12,6 +16,7 @@ import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author Andrey
@@ -44,10 +49,16 @@ public class NewsPortlet extends MVCPortlet {
         super.render(renderRequest, renderResponse);
     }
 
-    public void setStops(ActionRequest actionRequest,
-                         ActionResponse actionResponse) throws IOException, PortletException {
+    public void setStops(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
         from = ParamUtil.getString(actionRequest, "from");
         to = ParamUtil.getString(actionRequest, "to");
+        parsePage(from, to);
+    }
+
+    private void parsePage(String from, String to) throws IOException {
+        WebClient webClient = new WebClient(BrowserVersion.CHROME, false, null, 0);
+        HtmlPage page = webClient.getPage("https://idos.idnes.cz/mladaboleslav/spojeni/vysledky/?f=" + from + "&fc=333003&t=" + to + "&tc=333003");
+        List<HtmlDivision> elements = page.getByXPath("//div[contains(@class, 'box connection detail-box ca-collapsed')]");
     }
 
 }

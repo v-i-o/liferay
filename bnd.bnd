@@ -12,6 +12,12 @@ Import-Package: \
     com.liferay.portal.kernel.portlet.bridges.mvc;version="2.0.3",\
     org.osgi.util.tracker;version="1.1.0",\
     javax.portlet;version="3.0"
+Private-Package: net.sourceforge.htmlunit;
+Bundle-ClassPath: \
+  .,\
+  lib/htmlunit.jar
+-includeresource: \
+  lib/htmlunit.jar=htmlunit-2.44.0.jar
 -contract: JavaPortlet,JavaServlet
 -jsp: *.jsp,*.jspf
 -metatype: *
