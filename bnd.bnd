@@ -11,13 +11,18 @@ Import-Package: \
     org.osgi.util.function,org.osgi.util.promise;version="1.1.0",\
     com.liferay.portal.kernel.portlet.bridges.mvc;version="2.0.3",\
     org.osgi.util.tracker;version="1.1.0",\
+    org.w3c.dom;version="1.2.1",\
     javax.portlet;version="3.0"
-Private-Package: net.sourceforge.htmlunit;
+Private-Package: net.sourceforge.htmlunit,org.apache.httpcomponents;
 Bundle-ClassPath: \
   .,\
-  lib/htmlunit.jar
+  lib/htmlunit.jar, \
+  lib/httpclient.jar, \
+  lib/htmlunit-cssparser.jar
 -includeresource: \
-  lib/htmlunit.jar=htmlunit-2.44.0.jar
+  lib/htmlunit.jar=htmlunit-2.44.0.jar, \
+  lib/httpclient.jar=httpclient-4.5.5.jar, \
+  lib/htmlunit-cssparser.jar=htmlunit-cssparser-1.6.0.jar
 -contract: JavaPortlet,JavaServlet
 -jsp: *.jsp,*.jspf
 -metatype: *
